@@ -5,4 +5,4 @@ it has a [wordle game demo](https://github.com/adimail/Computer-Networks/tree/ma
 
 ### Wordle demo
 
-![Wordle demo](assets/simple-wordle-clone.mp4)
+![Wordle demo](assets/simple-wordle-clone.gif)
