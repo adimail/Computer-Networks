@@ -23,10 +23,13 @@ from config import *
 
 class WordleGame:
     def __init__(self):
-        self.target_word = random.choice(word_list)
+        self.target_word = ''
         self.active_connections = 0
         self.connection_lock = threading.Lock()
         self.active_players = {}  # Dictionary to store player names
+        
+    def setNewWord(self):
+        self.target_word = random.choice(word_list)
         
     def validate_guess(self, guess):
         if len(guess) != WORD_LENGTH:
@@ -60,6 +63,7 @@ def handle_client(client_socket, addr, game):
     try:
         player_name = client_socket.recv(1024).decode().strip()
         player_number = game.add_player(player_name)
+        game.setNewWord()
         if not player_number:
             client_socket.send("Room is full. Please try again later.".encode())
             client_socket.close()
