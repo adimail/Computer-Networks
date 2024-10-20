@@ -1,5 +1,5 @@
 class Router:
-    def init(self, router_id, n):
+    def __init__(self, router_id, n):
         self.router_id = router_id
         self.distance_vector = [float('inf')] * n
         self.distance_vector[router_id] = 0
@@ -20,7 +20,7 @@ class Router:
 
 def distance_vector_routing(network):
     routers = [Router(i, len(network)) for i in range(len(network))]
-
+    
     for i, row in enumerate(network):
         for j, cost in enumerate(row):
             if cost != float('inf') and i != j:
@@ -33,9 +33,10 @@ def distance_vector_routing(network):
             if router.update_distance_vector(routers):
                 updated = True
 
+    # Print the final distance vectors for each router
     for router in routers:
         print(f"Router {router.router_id}'s distance vector: {router.distance_vector}")
-        
+
 network = [
     [0, 2, float('inf'), 1, float('inf')],
     [2, 0, 3, 2, float('inf')],
